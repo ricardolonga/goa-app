@@ -1,0 +1,73 @@
+consumes:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+definitions:
+  GoaExampleClient:
+    description: A client
+    example:
+      href: Ipsa maxime.
+      id: 8.145394e+18
+      name: Dolor et non.
+    properties:
+      href:
+        description: API href for making requests on the client
+        example: Voluptas suscipit quia quod.
+        type: string
+      id:
+        description: Unique client Id
+        example: 3.1328308e+18
+        format: int64
+        type: integer
+      name:
+        description: Name of client
+        example: Fugit voluptatem est culpa porro autem.
+        type: string
+    required:
+    - id
+    - href
+    - name
+    title: 'Mediatype identifier: application/vnd.goa.example.client+json'
+    type: object
+host: localhost:8080
+info:
+  description: A simple goa service
+  title: The virtual clients catalog
+  version: ""
+paths:
+  /clients/{clientId}:
+    get:
+      description: Get client by id
+      operationId: client#show
+      parameters:
+      - description: Client Id
+        in: path
+        name: clientId
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaExampleClient'
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      summary: show
+produces:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+responses:
+  NotFound:
+    description: Not Found
+  OK:
+    description: OK
+    schema:
+      $ref: '#/definitions/GoaExampleClient'
+schemes:
+- http
+swagger: "2.0"
